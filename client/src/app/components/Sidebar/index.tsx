@@ -1,17 +1,20 @@
 "use client";
-import { useAppDispatch, useAppSelector } from '@/app/redux';
+import { useAppDispatch, useAppSelector } from '@/src/app/redux';
 import { Briefcase, LockIcon, LucideIcon, Search, X, Home, Settings, User, Users, ChevronUp, ChevronDown, AlertCircle, ShieldAlert, AlertTriangle, AlertOctagon, Layers3 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useState } from 'react';
-import { setIsSidebarCollapsed } from '@/state';
+import { setIsSidebarCollapsed } from '@/src/state';
+import { useGetProjectsQuery } from '@/src/state/api';
+
 
 
 const Sidebar = () => {
     const [showProjects, setShowProjects] = useState(true);
     const [showPriority, setShowPriority] = useState(true);
     
+    const {data: projects } = useGetProjectsQuery();
     const dispatch = useAppDispatch();
     const isSidebarCollapsed = useAppSelector(state => 
         state.global.isSidebarCollapsed,
@@ -69,7 +72,14 @@ const Sidebar = () => {
                     )}
             </button>
             {/*Projects list*/}
-
+            {showProjects && projects?.map((project) => (
+                <SidebarLink
+                key={project.id}
+                icon={Briefcase}
+                label={project.name}
+                href={`/projects/${project.id}`}
+                />
+            ))}
             {/*Priorities links*/}
             <button 
             className='flex w-full items-center justify-between px-8 py-3 text-gray-500'
@@ -106,7 +116,6 @@ const SidebarLink = ({
     href,
     icon: Icon,
     label,
- 
 }: SidebarLinkProps) => {
     const pathname = usePathname();
     const isActive = pathname === href || (pathname === "/" && href === "/dashboard");
