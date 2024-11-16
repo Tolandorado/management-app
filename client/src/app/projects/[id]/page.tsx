@@ -2,9 +2,10 @@
 
 import React, { useState } from 'react'
 import ProjectHeader from '@/src/app/projects/ProjectHeader';
-import BoardView from '../BoardView';
-
-
+import BoardView from '../Board';
+import List from '../List';
+import Deadline from '../Deadline';
+import Table from '../Table';
 
 type Props = {
     params: {id: string};
@@ -22,6 +23,18 @@ const Project = ({params}: Props) => {
      
       {  activeTab === "Board" && (
             <BoardView id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen}/>
+        )}
+
+      {  activeTab === "List" && (
+            <List id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen}/>
+        )}
+
+      {  activeTab === "Deadline" && (
+            <Deadline id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen}/>
+        )}
+
+      {  activeTab === "Table" && (
+            <Table id={id} setIsModalNewTaskOpen={setIsModalNewTaskOpen}/>
         )}
     </div>
   )};

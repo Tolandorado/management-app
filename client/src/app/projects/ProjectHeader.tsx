@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Header from '../components/Header';
-import { Clock, Filter, Grid3X3, Grid3x3, List, Share, Share2, ShareIcon, Table } from 'lucide-react';
+import { Clock, Filter, Grid3X3, Grid3x3, List, PlusSquare, Share, Share2, ShareIcon, Table } from 'lucide-react';
 
 type Props = {
     activeTab: string;
@@ -8,14 +8,24 @@ type Props = {
 }
 
 const ProjectHeader = ({activeTab, setActiveTab}: Props) => {
-  const [isModalNewTaskOpen, setIsModalNewTaskOpen] = useState(false);
+  const [isModalNewProjectOpen, setIsModalNewProjectOpen] = useState(false);
 
 
     return (
     <div className='px-4 xl:px-6'>
-        {/* modal new project*/}
+        {/* <ModalNewProject
+        isOpen={isModalNewProjectOpen}
+        onClose={()=> setIsModalNewProjectOpen(false)}
+        /> */}
         <div className='pb-6 pt-6 lg:pb-4 lg:pt-8'>
-            <Header name="Product Design Development"/>
+            <Header name="Product Design Development"
+            buttonComponent={
+                <button className='flex items-center rounded-md bg-blue-primary px-3 py-2 text-white hover:bg-blue-600'
+                onClick={()=> setIsModalNewProjectOpen(true)}
+                >
+                    <PlusSquare className='mr-2 h-5 w-5'/> New Project
+                </button>
+            }/>
         </div>
         {/* Tabs */}
 
@@ -32,7 +42,7 @@ const ProjectHeader = ({activeTab, setActiveTab}: Props) => {
                 setActiveTab={setActiveTab}
                 activeTab={activeTab}/>
                 <TabButton 
-                name="Timeline"
+                name="Deadline"
                 icon={<Clock className='h-5 w-5'/>}
                 setActiveTab={setActiveTab}
                 activeTab={activeTab}/>
