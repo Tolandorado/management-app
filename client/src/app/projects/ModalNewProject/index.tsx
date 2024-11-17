@@ -53,7 +53,7 @@ const ModalNewProject = ({isOpen, onClose}: Props) => {
             value={projectName}
             onChange={(e) => setProjectName(e.target.value)}/>
 
-            <input type="text" 
+            <textarea 
             className={inputStyles}
             placeholder='Some description...'
             value={description}
@@ -82,4 +82,4 @@ const ModalNewProject = ({isOpen, onClose}: Props) => {
   )
 }
 
-export default ModalNewProject
+export default ModalNewProject;

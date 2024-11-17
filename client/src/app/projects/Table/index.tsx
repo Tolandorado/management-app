@@ -4,6 +4,7 @@ import Header from '../../components/Header';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { dataGridClassNames, dataGridSxStyles } from '@/src/lib/utils';
 import { useAppSelector } from '../../redux';
+import { PlusSquare } from 'lucide-react';
 
 type Props = {
     id: string;
@@ -79,7 +80,14 @@ const Table = ({id, setIsModalNewTaskOpen}: Props) => {
   return (
     <div className='h-[540px] w-full px-4 pb-8 xl:px-6'>
     <div className='pt-5'>
-        <Header name='Table view' isSmallText />
+        <Header name='Table view' 
+         buttonComponent={
+            <button
+            className='flex items-center rounded bg-blue-primary px-3 py-2 text-white hover:bg-blue-600'
+            onClick={() => setIsModalNewTaskOpen(true)}
+            ><PlusSquare size={18} className='mr-2'/>New Task</button>
+        }
+        isSmallText/>
     </div>
     <DataGrid 
     rows={tasks || []}

@@ -6,6 +6,8 @@ import BoardView from '../Board';
 import List from '../List';
 import Deadline from '../Deadline';
 import Table from '../Table';
+import ModalNewTask from '../../components/ModalNewTask';
+
 
 type Props = {
     params: {id: string};
@@ -18,6 +20,7 @@ const Project = ({params}: Props) => {
 
   return (
     <div>
+      <ModalNewTask id={id} isOpen={isModalNewTaskOpen} onClose={()=> setIsModalNewTaskOpen(false)}/>
         {/* Modal form for new task */}
      <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} /> 
      

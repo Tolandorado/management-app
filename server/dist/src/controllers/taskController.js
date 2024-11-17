@@ -34,7 +34,7 @@ const getTasks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getTasks = getTasks;
 const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { title, description, status, priority, tags, startDate, dueDate, points, projectId, authorUserId, assignedUserId, } = req.body;
+    const { title, description, status, priority, tags, startDate, dueDate, projectId, authorUserId, assignedUserId, } = req.body;
     try {
         const newTask = yield prisma.task.create({
             data: {
@@ -45,7 +45,6 @@ const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 tags,
                 startDate,
                 dueDate,
-                points,
                 projectId,
                 authorUserId,
                 assignedUserId,
@@ -54,7 +53,7 @@ const createTask = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res.status(201).json(newTask);
     }
     catch (error) {
-        res.status(500).json({ message: `Error creating a task/Ошибка создания задачи :) ${error.message}` });
+        res.status(500).json({ message: `Error creating a task/Ошибка создания задачи :) ${error.message} ${assignedUserId}` });
     }
 });
 exports.createTask = createTask;

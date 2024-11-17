@@ -35,4 +35,4 @@ const Modal = ({children, isOpen, onClose, name}: Props) => {
   );
 }
 
-export default Modal
+export default Modal;

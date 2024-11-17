@@ -38,11 +38,12 @@ export const createTask = async (
     tags,
     startDate,
     dueDate,
-    points,
+  
     projectId,
     authorUserId,
     assignedUserId,
    } = req.body; 
+   
    try {
        const newTask = await prisma.task.create({
         data: {
@@ -53,7 +54,7 @@ export const createTask = async (
             tags,
             startDate,
             dueDate,
-            points,
+         
             projectId,
             authorUserId,
             assignedUserId,           
@@ -61,7 +62,8 @@ export const createTask = async (
        })
        res.status(201).json(newTask);
    } catch (error: any) {
-       res.status(500).json({ message: `Error creating a task/Ошибка создания задачи :) ${error.message}`})
+       res.status(500).json({ message: `Error creating a task/Ошибка создания задачи :) ${error.message} ${assignedUserId}`},
+       )
    }
 };
 
