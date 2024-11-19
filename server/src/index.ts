@@ -7,6 +7,7 @@ import morgan from "morgan";
 /* Route imp */
 import projectRoutes from "./routes/projectRoutes";
 import taskRoutes from "./routes/taskRoutes";
+import searchRoutes from "./routes/searchRoute"
 
 /* Config */
 dotenv.config();
@@ -26,6 +27,7 @@ app.get('/', (req, res) => {
 
 app.use("/projects", projectRoutes);
 app.use("/tasks", taskRoutes);
+app.use("/search", searchRoutes)
 
 
 /* Server */
