@@ -6,7 +6,7 @@ import BoardView from '../Board';
 import List from '../List';
 import Deadline from '../Deadline';
 import Table from '../Table';
-import ModalNewTask from '../../components/ModalNewTask';
+import ModalNewTask from '../../../components/ModalNewTask';
 
 
 type Props = {

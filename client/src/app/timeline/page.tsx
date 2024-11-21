@@ -5,7 +5,7 @@ import React, { useMemo, useState } from 'react'
 import { useAppSelector } from '../redux';
 import { DisplayOption, Gantt, ViewMode } from 'gantt-task-react';
 import "gantt-task-react/dist/index.css";
-import Header from '../components/Header';
+import Header from '../../components/Header';
 
 type TaskTypeItems = "task" | "milestone" | "project"
 

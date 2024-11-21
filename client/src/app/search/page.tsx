@@ -3,10 +3,10 @@
 import { useSearchQuery } from '@/src/state/api';
 import { debounce } from 'lodash';
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header';
-import TaskCard from '../components/TaskCard';
-import ProjectCard from '../components/ProjectCard';
-import UserCard from '../components/UserCard';
+import Header from '../../components/Header';
+import TaskCard from '../../components/TaskCard';
+import ProjectCard from '../../components/ProjectCard';
+import UserCard from '../../components/UserCard';
 
 const Search = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -36,7 +36,7 @@ const Search = () => {
         {isLoading && <p>Loading...</p>}
         {isError && <p>Error search</p>}
         {!isLoading && !isError && searchResults && (
-            <div>
+            <div className='dark:text-white'>
                 {searchResults.tasks && searchResults.tasks?.length > 0 && (
                     <h2>Tasks</h2>
                 )}

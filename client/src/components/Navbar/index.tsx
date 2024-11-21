@@ -38,13 +38,13 @@ const Navbar = () => {
         <button onClick={() => dispatch(setIsDarkMode(!isDarkMode))}
         className={isDarkMode 
           ? `h-min w-min rounded p-2 dark:hover:bg-gray-700`
-          : `h-min w-min rounded p-2 hover:bg-gray-100`
+          : `h-min w-min rounded p-2 hover:bg-gray-200`
           }>{isDarkMode 
             ? (<SunIcon className='h-6 w-6 cursor-pointer dark:text-white'/>) 
             : (<MoonIcon className='h-6 w-6 cursor-pointer dark:text-white'/>)}</button>
         <Link
         href="/settings"
-        className='h-min w-min rounded p-2 hover:bg-gray-100'>
+        className='h-min w-min rounded p-2 hover:bg-gray-200 dark:hover:bg-gray-700'>
             <Settings className='h-6 w-6 cursor-pointer dark:text-white'></Settings>
         </Link>
         <div className='ml-2 mr-5 hidden min-h-[2em] w-[0.1em] bg-gray-200 md:inline-block'></div>

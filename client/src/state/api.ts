@@ -60,16 +60,25 @@ export interface Task {
     attachments?: Attachment[];
 }
 
+export interface Team {
+    teamId: number;
+    teamName: string;
+    productOwnerUserId?: number;
+    productManagerUserId?: number;
+}
+
 export interface searchResults {
     tasks?: Task[];
     projects?: Project[];
     users?: User[];
 }
 
+
+
 export const api = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
     reducerPath: 'api',
-    tagTypes: ['Projects', 'Tasks'],
+    tagTypes: ['Projects', 'Tasks', 'Users', 'Teams'],
     endpoints: (build) => ({
         getProjects: build.query<Project[], void>({
             query: () => 'projects',
@@ -90,6 +99,12 @@ export const api = createApi({
                     ? result.map(({id}) => ({ type: "Tasks" as const, id}))
                     : [{  type: "Tasks" as const}],
         }),
+        getTasksByUser: build.query<Task[], number>({
+            query: (userId) => `tasks/user/${userId}`,
+            providesTags: (result, error, userId) => result
+            ?  result.map(({id}) => ({ type: "Tasks", id}))
+            : [{type: "Tasks", id: userId}],
+        }),
         createTask: build.mutation<Task, Partial<Task>>({
             query: (task) => ({
                 url: 'tasks',
@@ -108,9 +123,18 @@ export const api = createApi({
                 { type: "Tasks", id: taskId },
             ],
         }),
+        getUsers: build.query<User[], void>({
+            query: () => "users",
+            providesTags:["Users"]
+        }),
+        getTeams: build.query<Team[], void>({
+            query: () => "teams",
+            providesTags:["Teams"]
+        }),
         search: build.query<searchResults, string>({
             query: (query) => `search?query=${query}` 
         }),
+
     }),
 });
 
@@ -120,5 +144,8 @@ export const {
     useCreateProjectMutation,
     useGetTasksQuery,
     useCreateTaskMutation,
-    useUpdateTaskStatusMutation 
+    useUpdateTaskStatusMutation,
+    useGetUsersQuery,
+    useGetTeamsQuery,
+    useGetTasksByUserQuery
  } = api;

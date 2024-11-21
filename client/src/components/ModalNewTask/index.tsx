@@ -21,11 +21,11 @@ type Props = {
     const [authorUserId, setAuthorUserId] = useState("");
     const [assignedUserId, setAssignedUserId] = useState("");
     const [projectId, setProjectId] = useState("");
-    const points = 2;
+
     const handleSubmit = async () => {
       if (!title || !authorUserId || !(id !== null || projectId)) return;
   
-      const formattedStartDate = new Date(startDate).toISOString()
+    const formattedStartDate = new Date(startDate).toISOString()
     const formattedDueDate = new Date(dueDate).toISOString()
   
       await createTask({
@@ -34,7 +34,6 @@ type Props = {
         status,
         priority,
         tags,
-        points,
         startDate: formattedStartDate,
         dueDate: formattedDueDate,
         projectId: id !== null ? Number(id) : Number(projectId),
@@ -44,7 +43,7 @@ type Props = {
     };
   
     const isFormValid = () => {
-      return title && authorUserId;
+      return title && authorUserId && !(id !== null || projectId);
     };
   
     const selectStyles =
@@ -144,10 +143,10 @@ type Props = {
             <input
               type="text"
               className={inputStyles}
-              placeholder="ProjectId"
+              placeholder="Project ID"
               value={projectId}
               onChange={(e) => setProjectId(e.target.value)}
-            />
+          />
           )}
           <button
             type="submit"

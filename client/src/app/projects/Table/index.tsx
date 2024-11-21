@@ -1,6 +1,6 @@
 import { useGetTasksQuery } from '@/src/state/api';
 import React from 'react'
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { dataGridClassNames, dataGridSxStyles } from '@/src/lib/utils';
 import { useAppSelector } from '../../redux';
@@ -56,13 +56,13 @@ const colums: GridColDef[] = [
         field: "author",
         headerName: "Author",
         width: 150,
-        renderCell: (params) => params.value.username || "Unknown"
+        renderCell: (params) => params.row.author.username || "Unknown",
     },
     {
         field: "assignee",
         headerName: "Assignee",
         width: 150,
-        renderCell: (params) => params.value.username || "Unassigned"
+        renderCell: (params) => params.row.assignee.username || "Unassigned",
     },
 ]
 

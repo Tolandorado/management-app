@@ -1,7 +1,7 @@
 import { Task, useGetTasksQuery } from '@/src/state/api';
-import TaskCard from "@/src/app/components/TaskCard";
+import TaskCard from "@/src/components/TaskCard";
 import React from 'react'
-import Header from '../../components/Header';
+import Header from '../../../components/Header';
 import { PlusSquare } from 'lucide-react';
 
 type ListProps = {
