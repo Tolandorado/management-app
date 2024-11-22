@@ -44,6 +44,7 @@ jobs:
         with:
           node-version: "20"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
+          cache-dependency-path: client/${{ steps.detect-package-manager.outputs.manager == 'npm' && 'package-lock.json' || 'yarn.lock' }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
