@@ -9,7 +9,7 @@ type Props = {
     id?: string | null;
   };
   
-  const ModalNewTask = ({ isOpen, onClose, id = null }: Props) => {
+  const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
     const [createTask, { isLoading }] = useCreateTaskMutation();
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -24,7 +24,7 @@ type Props = {
 
     const handleSubmit = async () => {
       if (!title || !authorUserId || !(id !== null || projectId)) return;
-  
+      
     const formattedStartDate = new Date(startDate).toISOString()
     const formattedDueDate = new Date(dueDate).toISOString()
   
@@ -43,7 +43,7 @@ type Props = {
     };
   
     const isFormValid = () => {
-      return title && authorUserId && !(id !== null || projectId);
+      return title && authorUserId && (id !== null || projectId);
     };
   
     const selectStyles =

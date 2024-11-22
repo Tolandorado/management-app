@@ -58,13 +58,13 @@ const columns: GridColDef[] = [
         field: "author",
         headerName: "Author",
         width: 150,
-        renderCell: (params) => params.row.author.username || "Unknown",
+        renderCell: (params) => params.row.author?.username || "Unknown",
     },
     {
         field: "assignee",
         headerName: "Assignee",
         width: 150,
-        renderCell: (params) => params.row.assignee.username || "Unassigned",
+        renderCell: (params) => params.row.assignee?.username || "Unassigned",
     },
 ]
 
@@ -88,8 +88,8 @@ const ReusablePage = ({priority}: Props) => {
         <ModalNewTask 
         isOpen={isModalNewTaskOpen} 
         onClose={() => setIsModalNewTaskOpen(false)}
-        />
-        <Header name="Priority Page" buttonComponent={
+        id={null}/>
+        <Header name="Priority Page (User with ID 1)" buttonComponent={
             <button className='mr-3 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700'
             onClick={() => setIsModalNewTaskOpen(true)}>
             New Task
