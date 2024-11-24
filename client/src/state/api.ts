@@ -73,10 +73,16 @@ export interface searchResults {
     users?: User[];
 }
 
-
+console.log(process.env.NEXT_PUBLIC_API_BASE_URL)
 
 export const api = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
+    baseQuery: fetchBaseQuery({ 
+        baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL,
+        prepareHeaders: (headers) => {
+            headers.set('ngrok-skip-browser-warning', 'true');
+            return headers; 
+          },
+     }),
     reducerPath: 'api',
     tagTypes: ['Projects', 'Tasks', 'Users', 'Teams'],
     endpoints: (build) => ({
